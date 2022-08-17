@@ -1,0 +1,236 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  transition: opacity 400ms ease-in-out, visibility 400ms ease-in-out;z-index: 200;
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.modal-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  background: $whiteTextColor;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  opacity: 1;
+  transition: transform 750ms cubic-bezier(0.075, 0.82, 0.165, 1),
+    opacity cubic-bezier(0.075, 0.82, 0.165, 1);
+    
+    @include mq(not-desktop){
+      width: 450px;
+    }
+    @include mq(desktop){
+      width: 538px;
+    }
+}
+
+.backdrop.is-hidden .modal-wrapper {
+  transform: translate(-50%, -50%) scale(0.4);
+  opacity: 0;
+}
+.backdrop .modal-wrapper {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.modal-text {
+  display: block;
+  @include fontstyle(700, 20px, 1.15);
+
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 12px;
+  color: $titleColor;
+  @include mq(not-desktop){
+    @include fontstyle(700, 20px, 1.5);
+    margin: 40px 40px 12px;
+  }
+}
+
+.modal-btn-icon {
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  .modal-btn:hover &,
+  .modal-btn:focus & {
+    fill: $secondaryTextColor;
+  }
+}
+
+.form-field {
+  position: relative;
+  display: block;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 10px;
+}
+
+.form-field.textarea {
+  margin-bottom: 20px;
+}
+
+.form-item {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  padding-left: 42px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  width: 100%;
+  height: 40px;
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  border-radius: 4px;
+  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    border: 1px solid $secondaryTextColor;
+  }
+}
+
+.form-item:hover ~ .form-icon,
+.form-item:focus ~ .form-icon {
+  fill: $secondaryTextColor;
+}
+
+.form-text {
+  display: block;
+  width: 100%;
+  height: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 12px 16px;
+
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  border-radius: 4px;
+  resize: none;
+  &:hover,
+  &:focus {
+    border: 1px solid $secondaryTextColor;
+  }
+}
+
+.text {
+  display: block;
+  @include fontstyle(400, 12px, 1.17);
+  letter-spacing: 0.01em;
+  margin-bottom: 4px;
+
+  color: $primaryTextColor;
+}
+
+.text.policy-desc {
+  display: block;
+  
+  letter-spacing: 0.03em;
+  text-align: center;
+  @include mq(mobile)
+  {@include fontstyle(400, 12px, 1.71);}
+  @include mq(desktop)
+  {@include fontstyle(400, 14px, 1.71);}
+}
+
+.form-icon {
+  position: absolute;
+  top: 28px;
+  left: 12px;
+  width: 18px;
+  height: 18px;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  .form-item:hover ~ &,
+  .form-item:focus ~ & {
+    fill: $secondaryTextColor;
+  }
+}
+
+.form-text::placeholder {
+  @include fontstyle(400, 12px, 1.17);
+  letter-spacing: 0.01em;
+
+  color: rgba(117, 117, 117, 0.5);
+}
+
+.policy-checkbox {
+  display: flex;
+  align-items: center;
+  margin-left: 54px;
+}
+
+.custom-checkbox {
+  width: 16px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 7px;
+  border-radius: 2px;
+  outline: 2px solid $titleColor;
+  outline-offset: -2px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.icon-checkbox-accept {
+  opacity: 0;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.checkbox:checked + .custom-checkbox .icon-checkbox-accept {
+  opacity: 1;
+}
+
+.checkbox:checked + .custom-checkbox {
+  background-color: $secondaryTextColor;
+  outline: 2px solid $secondaryTextColor;
+}
+
+.modal-link {
+  color: $secondaryTextColor;
+}
+
+.form-btn {
+  display: block;
+  width: 200px;
+  height: 50px;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+
+  @include fontstyle(700, 16px, 1.88);
+  letter-spacing: 0.06em;
+
+  color: $whiteTextColor;
+  background: $secondaryTextColor;
+  @extend .buton;
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.modal-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  background-color: $whiteTextColor;
+}
