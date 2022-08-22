@@ -6,3 +6,25 @@ const ingredients = [
   'Herbs',
   'Condiments',
 ];
+
+const ulEl = document.querySelector("#ingredients");
+const elements = []; 
+for (let i = 0; i < ingredients.length; i += 1) {
+  const ingredient = ingredients[i];
+  const liEl = document.createElement("li");
+ liEl.classList.add('item');
+ liEl.textContent = ingredient;
+ elements.push(liEl);
+}
+
+
+
+ulEl.append(...elements);
+
+
+// Напиши скрипт, который для каждого элемента массива ingredients:
+
+// 
+// Добавит название ингредиента как его текстовое содержимое.
+//
+// После чего вставит все <li> за одну операцию в список ul#ingredients.
