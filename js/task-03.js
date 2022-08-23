@@ -13,15 +13,7 @@ const images = [
   },
 ];
 const ulEl = document.querySelector(".gallery");
-const elements = []; 
-for (let i = 0; i < images.length; i += 1) {
-  const image = images[i];
-  const liEl = document.createElement("img");
- img.classList.add('item');
- liEl.textContent = ingredient;
- elements.push(liEl);
+for ( let image of images) {
+  ulEl.insertAdjacentHTML("afterbegin", `<li class = gallery_item> <img src = ${image.url} alt = ${image.alt} height = 200px > </li>`);
 }
 
-
-
-ulEl.append(...elements);
